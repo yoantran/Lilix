@@ -1,21 +1,36 @@
 import Header from "../header/index.jsx";
 import {Outlet} from "react-router-dom";
+import {Box} from "@mui/material";
 
 export default function Layout() {
 
     return (
-        <>
-            <div className='flex flex-col bg-black h-[100vh]'>
-                <div className='h-auto'>
-                    {/*render Header component*/}
-                    <Header/>
-                </div>
-                <div className='flex flex-row w-[100%] overflow-hidden' style={{minHeight: "calc(100vh - 50px)"}}>
-                    <div className='flex-1 overflow-auto'>
-                        <Outlet/>
-                    </div>
-                </div>
-            </div>
-        </>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100vh',
+                backgroundColor: 'black',
+                overflow: 'hidden',
+            }}
+        >
+            <Box sx={{ height: 'auto' }}>
+                {/*render Header component*/}
+                <Header />
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '100%',
+                    overflow: 'hidden',
+                    minHeight: 'calc(100vh - 80px)'
+                }}
+            >
+                <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
+                    <Outlet />
+                </Box>
+            </Box>
+        </Box>
     );
 }

@@ -1,19 +1,53 @@
 import Header from "../../components/header/index.jsx";
+import {Box} from "@mui/material";
+import Footer from "../../components/footer/index.jsx";
 
 export default function Home() {
     return (
-        <>
-            <div className='flex flex-col bg-black h-[100vh]'>
-                <div className='h-auto'>
-                    {/*render Header component*/}
-                    <Header/>
-                </div>
-                <div className='flex flex-row w-[100%] overflow-hidden' style={{minHeight: "calc(100vh - 50px)"}}>
-                    <div className='flex-1 overflow-auto'>
-                        home
-                    </div>
-                </div>
-            </div>
-        </>
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: '100vh',
+                overflow: 'hidden',
+            }}
+        >
+            <Box sx={{ height: 'auto' }}>
+                {/*render Header component*/}
+                <Header />
+            </Box>
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    width: '100%',
+                    overflow: 'hidden',
+                    minHeight: 'calc(100vh - 160px)'
+                }}
+            >
+                <Box sx={{
+                    flexGrow: 1,
+                    overflow: 'hidden',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundImage: `url('src/assets/wallpaper_home1.png')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    height: '100%'
+                }}>
+                    {/*<img*/}
+                    {/*    src={`src/assets/wallpaper_home1.png`}*/}
+                    {/*    alt={"Welcome to Monstro Lounge"}*/}
+                    {/*    loading="lazy"*/}
+                    {/*/>*/}
+                </Box>
+            </Box>
+            <Box sx={{ height: 'auto' }}>
+                {/*render Header component*/}
+                <Footer />
+            </Box>
+        </Box>
     );
 }
