@@ -2,18 +2,41 @@ import {
     AppBar,
     Avatar,
     Box,
-    Container,
+    Container, Grid2,
     IconButton,
     Menu,
     Toolbar,
     Tooltip,
-    Typography, useTheme
+    Typography
 } from "@mui/material";
+
 import MenuItem from '@mui/material/MenuItem';
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-const pages = ['Profile', 'Lore', 'Gallery', 'Relationship'];
+const menuItems = [
+    {
+        label: 'Profile',
+        img: 'src/assets/menu_icon_unopen.png',
+        path: '/profile'
+    },
+    {
+        label: 'Lore',
+        img: 'src/assets/menu_icon_unopen.png',
+        path: '/lore'
+    },
+    {
+        label: 'Gallery',
+        img: 'src/assets/menu_icon_unopen.png',
+        path: '/gallery'
+    },
+    {
+        label: 'Relationship',
+        img: 'src/assets/menu_icon_unopen.png',
+        path: '/relationship'
+    },
+];
+
 
 export default function Header() {
     const navigate = useNavigate()
@@ -31,6 +54,10 @@ export default function Header() {
     const handleHomeClick = () => {
         navigate("/")
     }
+    const handleMenuItemClick = (path) => {
+        navigate(path);
+        handleCloseMenu();
+    }
 
     return (
         <>
@@ -40,90 +67,6 @@ export default function Header() {
             }}>
                 <Container maxWidth="xl" sx={{ px: 0 }}>
                     <Toolbar disableGutters>
-                        {/*<AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />*/}
-                        {/*<Typography*/}
-                        {/*    variant="h6"*/}
-                        {/*    noWrap*/}
-                        {/*    component="a"*/}
-                        {/*    href="#app-bar-with-responsive-menu"*/}
-                        {/*    sx={{*/}
-                        {/*        mr: 2,*/}
-                        {/*        display: { xs: 'none', md: 'flex' },*/}
-                        {/*        fontFamily: 'monospace',*/}
-                        {/*        fontWeight: 700,*/}
-                        {/*        letterSpacing: '.3rem',*/}
-                        {/*        color: 'inherit',*/}
-                        {/*        textDecoration: 'none',*/}
-                        {/*    }}*/}
-                        {/*>*/}
-                        {/*    LOGO*/}
-                        {/*</Typography>*/}
-
-                        {/*<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>*/}
-                        {/*    <IconButton*/}
-                        {/*        size="large"*/}
-                        {/*        aria-label="account of current user"*/}
-                        {/*        aria-controls="menu-appbar"*/}
-                        {/*        aria-haspopup="true"*/}
-                        {/*        onClick={handleOpenNavMenu}*/}
-                        {/*        color="inherit"*/}
-                        {/*    >*/}
-                        {/*        <MenuIcon />*/}
-                        {/*    </IconButton>*/}
-                        {/*    <Menu*/}
-                        {/*        id="menu-appbar"*/}
-                        {/*        anchorEl={anchorElNav}*/}
-                        {/*        anchorOrigin={{*/}
-                        {/*            vertical: 'bottom',*/}
-                        {/*            horizontal: 'left',*/}
-                        {/*        }}*/}
-                        {/*        keepMounted*/}
-                        {/*        transformOrigin={{*/}
-                        {/*            vertical: 'top',*/}
-                        {/*            horizontal: 'left',*/}
-                        {/*        }}*/}
-                        {/*        open={Boolean(anchorElNav)}*/}
-                        {/*        onClose={handleCloseNavMenu}*/}
-                        {/*        sx={{ display: { xs: 'block', md: 'none' } }}*/}
-                        {/*    >*/}
-                        {/*        {pages.map((page) => (*/}
-                        {/*            <MenuItem key={page} onClick={handleCloseNavMenu}>*/}
-                        {/*                <Typography sx={{ textAlign: 'center' }}>{page}</Typography>*/}
-                        {/*            </MenuItem>*/}
-                        {/*        ))}*/}
-                        {/*    </Menu>*/}
-                        {/*</Box>*/}
-                        {/*<AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />*/}
-                        {/*<Typography*/}
-                        {/*    variant="h5"*/}
-                        {/*    noWrap*/}
-                        {/*    component="a"*/}
-                        {/*    href="#app-bar-with-responsive-menu"*/}
-                        {/*    sx={{*/}
-                        {/*        mr: 2,*/}
-                        {/*        display: { xs: 'flex', md: 'none' },*/}
-                        {/*        flexGrow: 1,*/}
-                        {/*        fontFamily: 'monospace',*/}
-                        {/*        fontWeight: 700,*/}
-                        {/*        letterSpacing: '.3rem',*/}
-                        {/*        color: 'inherit',*/}
-                        {/*        textDecoration: 'none',*/}
-                        {/*    }}*/}
-                        {/*>*/}
-                        {/*    LOGO*/}
-                        {/*</Typography>*/}
-                        {/*<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>*/}
-                        {/*    {pages.map((page) => (*/}
-                        {/*        <Button*/}
-                        {/*            key={page}*/}
-                        {/*            onClick={handleCloseNavMenu}*/}
-                        {/*            sx={{ my: 2, color: 'white', display: 'block' }}*/}
-                        {/*        >*/}
-                        {/*            {page}*/}
-                        {/*        </Button>*/}
-                        {/*    ))}*/}
-                        {/*</Box>*/}
-
                         <Box
                             sx={{
                                 flexGrow: 1,
@@ -152,8 +95,6 @@ export default function Header() {
                         </Box>
                     </Toolbar>
                     <Menu
-                        // sx={{ mt: '80px' }}
-                        id="menu-appbar"
                         anchorEl={anchorElMenu}
                         anchorOrigin={{
                             vertical: 'top',
@@ -177,11 +118,31 @@ export default function Header() {
                             },
                         }}
                     >
-                        {pages.map((page) => (
-                            <MenuItem key={page} onClick={handleCloseMenu}>
-                                <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                            </MenuItem>
-                        ))}
+                        <Grid2 container spacing={2}>
+                            {menuItems.map((item) => (
+                                <Grid2 item xs={6} key={item.label}>
+                                    <MenuItem
+                                        onClick={() => handleMenuItemClick(item.path)}
+                                    >
+                                        <Box
+                                            sx={{
+                                                display: 'flex',
+                                                flexDirection: 'column',
+                                                alignItems: 'center',
+                                                justifyContent: 'center'
+                                            }}
+                                        >
+                                            <img
+                                                src={item.img}
+                                                alt={item.label}
+                                                style={{ width: '50px', height: '50px' }}
+                                            />
+                                            <Typography sx={{ textAlign: 'center', mt: 1 }}>{item.label}</Typography>
+                                        </Box>
+                                    </MenuItem>
+                                </Grid2>
+                            ))}
+                        </Grid2>
                     </Menu>
                 </Container>
             </AppBar>
