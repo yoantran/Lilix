@@ -12,7 +12,7 @@ import {
 
 import MenuItem from '@mui/material/MenuItem';
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const menuItems = [
     {
@@ -42,6 +42,7 @@ export default function Header() {
     const navigate = useNavigate()
     const [anchorElMenu, setAnchorElMenu] = React.useState(null);
     const [menuState, setMenuState] = useState("close")
+    const { pathname } = useLocation();
 
     const handleOpenMenu = (event) => {
         setAnchorElMenu(event.currentTarget);
@@ -72,6 +73,7 @@ export default function Header() {
                                 flexGrow: 1,
                             }}
                         >
+                            {pathname !== '/' && pathname !== '/home' && ( // Conditional rendering
                             <Tooltip title="Go Back To Home">
                                 <IconButton onClick={handleHomeClick} sx={{
                                     p: 0
@@ -79,6 +81,7 @@ export default function Header() {
                                     <Avatar alt="Menu" src="src/assets/home_icon.png" sx={{ width: 80, height: 80 }}/>
                                 </IconButton>
                             </Tooltip>
+                            )}
                         </Box>
 
                         <Box sx={{
