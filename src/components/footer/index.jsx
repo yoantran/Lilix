@@ -7,12 +7,12 @@ import MenuItem from "@mui/material/MenuItem";
 const pages = [
     {
         label: "Facebook",
-        icon: <FacebookIcon color="primary" />,
+        icon: <FacebookIcon sx={{ color: 'white', width: '30px', height: '30px' }} />,
         link: 'https://www.facebook.com/mie.tran.397293/'
     },
     {
         label: "Twitter",
-        icon: <TwitterIcon color="primary" />,
+        icon: <TwitterIcon sx={{ color: 'white', width: '30px', height: '30px' }} />,
         link: 'https://x.com/yuu_mie0612'
     },
     // Add more social media links here
@@ -40,36 +40,32 @@ export default function Footer() {
         }}>
             <Container maxWidth="xl" sx={{px: 0}}>
                 <Toolbar disableGutters>
-                    <Typography>
-                        copyright yeedee yaadaa
+                    <Box sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center' }}>
+                    <Typography variant="body2" align="center"
+                                sx={{
+                                    flexGrow: 1,
+                                    width: '50vw', // Use vw unit for half screen width
+                                    maxWidth: '500px',
+                                    overflow: 'hidden',
+                                    whiteSpace: 'nowrap',
+                                    textOverflow: 'ellipsis'
+                                }}>
+                        All the artwork and contents belong to @Miemiekyu. <br/>
+                        The act of reposting, copying and re-editing my works is strictly prohibited.
                     </Typography>
-                    {/*<Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>*/}
-                    {/*    <Tooltip*/}
-                    {/*        title=*/}
-                    {/*        {*/}
-                    {/*            <div>*/}
-                    {/*                <p>Hi, I&#39;m Mie, who created this website. <br/>*/}
-                    {/*                I worked hard on this. <br/>*/}
-                    {/*                Hope y&#39;all enjoy your stay~</p>*/}
-                    {/*            </div>*/}
-                    {/*        }*/}
-                    {/*    >*/}
-                    {/*        <IconButton*/}
-                    {/*            sx={{p: 0 }}*/}
-                    {/*            onClick={handleOpenMenu}*/}
-                    {/*        >*/}
-                    {/*            <Avatar alt="Mie" src="src/assets/author_icon.png" sx={{ width: 50, height: 50 }}/>*/}
-                    {/*        </IconButton>*/}
-                    {/*    </Tooltip>*/}
-                    {/*</Box>*/}
+                    </Box>
 
-                    <Box sx={{flexGrow: 1, display: {xs: 'flex', md: 'none'}}}>
+                    <Box
+                        sx={{
+                            // flexGrow: 1,
+                            display: 'flex', justifyContent: 'flex-end', alignItems: 'center'
+                        }}>
                         <Tooltip
                             title=
                                 {
                                     <div>
-                                        <p>Hi, I&#39;m Mie, who created this website. <br/>
-                                            I worked hard on this. <br/>
+                                        <p>Hi, I worked hard on this.<br/>
+                                            If u r interested in me and my work, feel free to explore the links by clicking on me. <br/>
                                             Hope y&#39;all enjoy your stay~</p>
                                     </div>
                                 }
@@ -81,12 +77,10 @@ export default function Footer() {
                                 aria-controls="menu-appbar"
                                 aria-haspopup="true"
                                 onClick={handleOpenMenu}
-                                color="inherit"
                             >
                                 <Avatar alt="Mie" src="src/assets/author_icon.png" sx={{width: 50, height: 50}}/>
                             </IconButton>
                         </Tooltip>
-
                         <Menu
                             anchorEl={anchorElMenu}
                             anchorOrigin={{
@@ -101,8 +95,9 @@ export default function Footer() {
                             open={Boolean(anchorElMenu)}
                             onClose={handleCloseMenu}
                             sx={{
-                                mt: '80px',
+                                mt: '60px',
                                 '& .MuiPaper-root': {
+                                    backgroundColor: 'transparent', // Set background to transparent
                                     width: '50%',
                                     minWidth: '250px',
                                     overflowY: 'auto',
@@ -111,7 +106,9 @@ export default function Footer() {
                             }}
                         >
                             <Grid2 container spacing={2}
-                                   sx={{ justifyContent: 'flex-end',
+                                   sx={{
+                                       display: 'flex',
+                                       justifyContent: 'center',
                                        flexWrap: 'wrap'}}
                             >
                                 {pages.map((item) => (
@@ -127,28 +124,12 @@ export default function Footer() {
                                                     justifyContent: 'center'
                                                 }}
                                             >
-                                                <img
-                                                    src={item.img}
-                                                    alt={item.label}
-                                                    style={{ width: '50px', height: '50px' }}
-                                                />
+                                                {item.icon}
                                             </Box>
                                         </MenuItem>
                                     </Grid2>
                                 ))}
                             </Grid2>
-
-                            {/*<Grid2 container spacing={2} sx={{ mt: 2 }}>*/}
-                            {/*    {socialMediaLinks.map((link) => (*/}
-                            {/*        <Grid2 item xs={6} key={link.link}>*/}
-                            {/*            <MenuItem>*/}
-                            {/*                <Link href={link.link} target="_blank" rel="noopener noreferrer">*/}
-                            {/*                    {link.icon}*/}
-                            {/*                </Link>*/}
-                            {/*            </MenuItem>*/}
-                            {/*        </Grid2>*/}
-                            {/*    ))}*/}
-                            {/*</Grid2>*/}
                         </Menu>
                     </Box>
 

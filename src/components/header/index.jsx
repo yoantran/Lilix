@@ -17,22 +17,22 @@ import {useNavigate} from "react-router-dom";
 const menuItems = [
     {
         label: 'Profile',
-        img: 'src/assets/menu_icon_unopen.png',
+        img: 'src/assets/profile.png',
         path: '/profile'
     },
     {
         label: 'Lore',
-        img: 'src/assets/menu_icon_unopen.png',
+        img: 'src/assets/lore.png',
         path: '/lore'
     },
     {
         label: 'Gallery',
-        img: 'src/assets/menu_icon_unopen.png',
+        img: 'src/assets/gallery.png',
         path: '/gallery'
     },
     {
         label: 'Relationship',
-        img: 'src/assets/menu_icon_unopen.png',
+        img: 'src/assets/relationship.png',
         path: '/relationship'
     },
 ];
